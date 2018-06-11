@@ -43,6 +43,19 @@ issue one of the following commands:
 
 If you just issue ``make``, all three targets will be compiled.
 
+PySCF
+=====
+
+Once the library has been compiled, an example of how to use it with
+pyscf has been added in the python directory. Just edit the variable
+_loaderpath and adjust to the location of the shared library which was
+create with the make command inside lib directory.
+
+The library use different names for the DFT functionals than the ones
+used in pyscf. One can manually specifie it, or just add an alias in
+pyscf/dft/libxc.py or pyscf/dft/xcfun.py according to the user
+preferences. The names used in the library can be consulted for example
+in lib/core.f90.
 
 Credits
 =======
