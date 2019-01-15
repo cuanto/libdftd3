@@ -6,7 +6,7 @@ from pyscf import gto, scf, dft
 from pyscf.geomopt import berny_solver
 from berny import Berny, geomlib, Logger, optimize as optimize_berny
 
-_loaderpath = '/home/jluis/src/pyscf/pruebas/dftd3/lib'
+_loaderpath = '/home/jluis/src/pyscf/dev/libdftd3/lib'
 libdftd3 = numpy.ctypeslib.load_library('libdftd3.so', _loaderpath)
 
 name = 'c2h4_c2h4'
@@ -55,7 +55,7 @@ def mf_grad_with_dftd3(geom):
         itype[ia] = lib.parameters.NUC[symb]
     edisp = numpy.zeros(1)
     grad = numpy.zeros((mol.natm,3)) 
-    libdftd3.dftd3(ctypes.c_int(mol.natm),
+    libdftd3.wrapper(ctypes.c_int(mol.natm),
              coords.ctypes.data_as(ctypes.c_void_p),
              itype.ctypes.data_as(ctypes.c_void_p),
              ctypes.c_char_p(func),

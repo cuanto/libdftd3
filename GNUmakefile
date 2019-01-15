@@ -11,10 +11,6 @@ lib:
 	$(MAKE) -C lib CC="$(CC)" FC="$(FC)" FCFLAGS="$(FCFLAGS)" LN="$(LN)" \
             LNFLAGS="$(LNFLAGS)" SRCDIR="."
 
-dftd3: lib
-	$(MAKE) -C prg FC="$(FC)" FCFLAGS="$(FCFLAGS)" LN="$(LN)" \
-	    LNFLAGS="$(LNFLAGS)" dftd3
-
 testapi: lib
 	$(MAKE) -C test FC="$(FC)" FCFLAGS="$(FCFLAGS)" LN="$(LN)" \
 	    LNFLAGS="$(LNFLAGS)" testapi

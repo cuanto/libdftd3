@@ -24,7 +24,7 @@ vpath % $(SRCDIR)
 .PHONY: clean distclean
 
 
-OBJS  = api.o common.o core.o pars.o sizes.o wrapper.o dftd3.o
+OBJS  = api.o common.o core.o pars.o sizes.o wrapper.o
 
 $(LIBD3): $(OBJS)
 	ar r $@ $^

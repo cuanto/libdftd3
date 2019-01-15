@@ -1,24 +1,25 @@
-subroutine wrapper(natoms, coords, itype, fun, version, tz, edisp, grads)
+subroutine wrapper(natoms, coords, itype, fun, version, tz, edisp, grads) bind(c)
 
-  use iso_c_binding
-  use dftd3_api
+  use iso_c_binding, only: c_int, c_double, c_null_char, c_char
+  use dftd3_api, only: dftd3_calc, dftd3_input, dftd3_init, dftd3_dispersion, &
+                       dftd3_set_functional
   implicit none
 
-  integer(kind=c_int), intent(in) :: natoms
+  integer(kind=c_int), intent(in), value :: natoms
   real(kind=c_double) :: coords(natoms,3)
   integer(kind=c_int), intent(in) :: itype(natoms)
   character(kind=c_char,len=1), intent(in) :: fun(*)
-  integer(kind=c_int), intent(in) :: version
-  integer(kind=c_int), intent(in) :: tz
+  integer(kind=c_int), intent(in), value :: version
+  integer(kind=c_int), intent(in), value :: tz
   real(kind=c_double), intent(out) :: edisp
   real(kind=c_double), intent(out) :: grads(3,natoms)
 
   type(dftd3_calc) :: dftd3
   type(dftd3_input) :: input
-  real(kind=8) :: coordsr(3,natoms)
+  real(kind=c_double) :: coordsr(3,natoms)
   logical :: ltz
   character(len=:), allocatable :: func
-  integer :: i, nchars
+  integer(kind=c_int) :: i, nchars
 
   i = 1
   do
